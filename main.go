@@ -10,7 +10,9 @@ func main() {
 	// 	fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
 	// })
 	// Serve static files from the static directory
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static/"))))
+	//http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static/"))))
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("public/"))))
+
 	http.HandleFunc("/", home)
 	http.HandleFunc("/about", about)
 
