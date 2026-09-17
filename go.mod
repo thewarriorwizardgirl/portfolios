@@ -1,3 +1,3 @@
-module manup1
+module portfolios
 
 go 1.27.1

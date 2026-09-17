@@ -38,38 +38,3 @@ func about(w http.ResponseWriter, r *http.Request) {
 	//fmt.Fprintf(w, "Hello, you've requested custom template about: %s\n", r.URL.Path)
 	renderTemplate(w, "about.html")
 }
-
-// package main
-
-// import (
-// 	"fmt"
-// 	"log"
-// 	"net/http"
-// )
-
-// func main() {
-// 	http.HandleFunc("/abc", home)
-// 	//Start the server on port
-// 	err := http.ListenAndServe(":8080", nil)
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-
-// }
-
-// func home(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
-// 	//renderTemplate(w, "home.html")
-
-// }
-
-// func renderTemplate(w http.ResponseWriter, tmpl string) {
-// 	t, err := template.ParseFiles("templates/" + tmpl)
-// 	if err != nil {
-// 		http.Error(w, err.Error(), http.StatusInternalServerError)
-// 		return
-// 	}
-// 	//Execute the template to the writer because there is no error
-// 	t.Execute(w, nil)
-
-// }
