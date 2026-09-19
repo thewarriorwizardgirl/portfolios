@@ -1,9 +1,16 @@
 package handler
 
 import (
+	"embed"
 	"html/template"
 	"net/http"
 )
+
+// Embed the template directory so all html files are available at runtime.
+// Using the directory pattern is more robust than matching a glob directly.
+//
+//go:embed templates
+var templateFS embed.FS
 
 // Handler is the entry point Vercel calls for incoming web traffic
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -34,7 +41,7 @@ func about(w http.ResponseWriter, r *http.Request) {
 func renderTemplate(w http.ResponseWriter, tmpl string) {
 	// Vercel maps your root files into the runtime path execution.
 	// We read directly from the bundled templates folder.
-	t, err := template.ParseFiles("templates/" + tmpl)
+	t, err := template.ParseFS(templateFS, "templates/"+tmpl)
 	if err != nil {
 		http.Error(w, "Template error: "+err.Error(), http.StatusInternalServerError)
 		return
